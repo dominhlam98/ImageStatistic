@@ -4,31 +4,25 @@ Export CSV and Image according to brightness value
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Select your Python version ( Python 3.6.8)
+--------------------------
 
+Create enviroment
+```bash
+python -m virtualenv myenv
+```
+
+Activate enviroment
+```bash
+myenv\Scripts\activate.bat 
+```
+
+Install lib
 ```bash
 pip install -r requirements.txt
 ```
 
 ## Usage
-
-Select your Python version ( Python 3.6.8)
---------------------------
-
-Create enviroment
-```
-python -m virtualenv myenv
-```
-
-Activate enviroment
-```
-myenv\Scripts\activate.bat 
-```
-
-Install lib
-```
-pip install -r requirements.txt
-```
 
 Download 3 Folder Image in GoogleDrive
 Add 3 Folder to Folder's name "image" in this repo
