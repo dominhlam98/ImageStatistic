@@ -5,7 +5,7 @@ import cv2
 import os
 import pandas as pd
 
-separate_img_dir = 'D:\\Data\\Learning\\ImageStatistic\\separate_image'
+separate_img_dir = 'D:\\Data\\Learning\\ImageStatistic\\separate_image_test'
 csv_dir = 'D:\\Data\\Learning\\ImageStatistic\\CSV'
 
 if os.path.exists(csv_dir) == False:
@@ -21,7 +21,7 @@ for subdir in os.listdir(separate_img_dir):
 
   for subdir1 in os.listdir(separate_path):
     img_dir = separate_path + '\\' + subdir1
-    export_csv_image(img_dir, csv_dir, subdir1, subdir1)
+    export_csv_image(img_dir, csv_path, subdir1, subdir1)
 
     
 

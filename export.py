@@ -4,14 +4,17 @@ import cv2
 import os
 import pandas as pd
 
-img_dir = 'D:\\Data\\Learning\\ImageStatistic\\separate_image\\bf88a72c-fe72-4550-a8c2-6ccad831727c ### 9de53fe2-2591-496e-b5ba-a9c894381ea7 (man)\\2.success'
+img_dir = 'D:\\Data\\Learning\\ImageStatistic\\separate_image_test\\bf88a72c-fe72-4550-a8c2-6ccad831727c ### 9de53fe2-2591-496e-b5ba-a9c894381ea7 (man)\\success'
 csv_dir = 'D:\\Data\\Learning\\ImageStatistic\\CSV'
-csv_name = "csv1"
 
-def export_image_array(csv_dir, cal_brightness_value_name, imageArray, column, image_status):
-  image_csv_dir = csv_dir + '\\' + cal_brightness_value_name
+def export_image_array(csv_dir, csv_name, cal_brightness_value_name, imageArray, column, image_status):
+  image_csv_dir = csv_dir + '\\' + csv_name
   if os.path.exists(image_csv_dir) == False:
     os.mkdir(image_csv_dir)
+    
+  image_type_dir = image_csv_dir + '\\' + cal_brightness_value_name
+  if os.path.exists(image_type_dir) == False:
+    os.mkdir(image_type_dir)
     
   rowArray = []
   rowCnt = 0
@@ -22,15 +25,15 @@ def export_image_array(csv_dir, cal_brightness_value_name, imageArray, column, i
     
     img = cv2.imread(imageEl.filedir)
     image_file_name = str(rowCnt) + '_' + imageEl.filename
-    os.chdir(image_csv_dir)
+    os.chdir(image_type_dir)
     cv2.imwrite(image_file_name, img)
     print('Save image: ' + image_file_name)
     
-  os.chdir(csv_dir)
+  os.chdir(image_type_dir)
   excel = pd.DataFrame(rowArray, columns= column)
   excel.to_csv(cal_brightness_value_name, index=False, na_rep='')
 
-def export_csv_image(img_dir=img_dir, csv_dir=csv_dir, csv_name=csv_name, image_status=''):
+def export_csv_image(img_dir=img_dir, csv_dir=csv_dir, csv_name='csv', image_status=''):
   if os.path.exists(csv_dir) == False:
     os.mkdir(csv_dir)
 
@@ -66,28 +69,28 @@ def export_csv_image(img_dir=img_dir, csv_dir=csv_dir, csv_name=csv_name, image_
     print('Extract: ' + str(count) + ' images')
     
   imageArray.sort(key=lambda x: x.averageV, reverse=True)
-  export_image_array(csv_dir, 'averageV', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'averageV', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.lfromLAB, reverse=True)
-  export_image_array(csv_dir, 'lfromLAB', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'lfromLAB', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.luminance, reverse=True)
-  export_image_array(csv_dir, 'luminance', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'luminance', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.way1, reverse=True)
-  export_image_array(csv_dir, 'way1', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'way1', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.way2, reverse=True)
-  export_image_array(csv_dir, 'way2', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'way2', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.way3, reverse=True)
-  export_image_array(csv_dir, 'way3', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'way3', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.way4, reverse=True)
-  export_image_array(csv_dir, 'way4', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'way4', imageArray, column, image_status)
   
   imageArray.sort(key=lambda x: x.way5, reverse=True)
-  export_image_array(csv_dir, 'way5', imageArray, column, image_status)
+  export_image_array(csv_dir, csv_name, 'way5', imageArray, column, image_status)
     
 # Uncomment this line, img_dir is img directory, csv_dir is destination csv directory, "ea1a2c91-f485-4eab-9ddf-2c56249393ca" is csv name, "success" is extra name
 # export_csv_image(img_dir, csv_dir, "ea1a2c91-f485-4eab-9ddf-2c56249393ca", "success")
