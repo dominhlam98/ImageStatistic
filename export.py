@@ -89,4 +89,5 @@ def export_csv_image(img_dir=img_dir, csv_dir=csv_dir, csv_name=csv_name, image_
   imageArray.sort(key=lambda x: x.way5, reverse=True)
   export_image_array(csv_dir, 'way5', imageArray, column, image_status)
     
-# export_csv_image(img_dir, csv_dir, "Lam", "success")
+# Uncomment this line, img_dir is img directory, csv_dir is destination csv directory, "ea1a2c91-f485-4eab-9ddf-2c56249393ca" is csv name, "success" is extra name
+# export_csv_image(img_dir, csv_dir, "ea1a2c91-f485-4eab-9ddf-2c56249393ca", "success")
