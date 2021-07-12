@@ -34,7 +34,7 @@ python separate_image.py
 
 Run this to extract all image in Separate Image
 ```
-python extract_total.py
+python export_total.py
 ```
 
 or run this to export specify dir
