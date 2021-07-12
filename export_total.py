@@ -1,6 +1,4 @@
-from imageFunc import Image
-from summaryFunc import SummaryImage
-from export import export_csv_image
+from export_func import export_csv_image
 import cv2
 import os
 import pandas as pd
