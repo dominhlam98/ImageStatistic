@@ -66,17 +66,20 @@ class ImageClass:
       self.lfromLAB = np.mean(L)
       
     def calLuminance(self):
-      darkValue = 0
+      # darkValue = 0
+      luminance = 0
       for i in self.image:
         for j in i:
           r = j[2]
           g = j[1]
           b = j[0]
-          luminance = (0.299 * ( r**2 ) + 0.587 * ( g**2 ) + 0.114 * ( b**2 ))
-          if luminance < 150:
-            darkValue += 1
+          luminance += (0.299 * ( r**2 ) + 0.587 * ( g**2 ) + 0.114 * ( b**2 ))
+          # if luminance < 150:
+          #   darkValue += 1
           
-      self.luminance = darkValue
+        
+          
+      self.luminance = luminance / (self.size * self.size)
       
     def calWay1(self):
       im = Image.open(self.filedir).convert('L')
@@ -186,4 +189,17 @@ class ImageClass:
                                             self.minB, self.maxB, self.sumB, round(self.averageB, 2) ]
 
       
-    
+    def reScaleV(self, arangeV, extraV):
+      # self.hsvImage[:,:,2] += arangeV
+          
+      for idxi, i in enumerate(self.hsvImage):
+        for indexj, j in enumerate(i):     
+          v = j[2]
+          count = v + extraV
+          if count > 255:
+            self.hsvImage[idxi][indexj][2] = 255
+            
+          if count < 0:
+            self.hsvImage[idxi][indexj][2] = 0
+          
+          self.hsvImage[idxi][indexj][2] += extraV
