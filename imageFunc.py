@@ -197,9 +197,9 @@ class ImageClass:
           v = j[2]
           count = v + extraV
           if count > 255:
-            self.hsvImage[idxi][indexj][2] = 255
+            continue
             
           if count < 0:
-            self.hsvImage[idxi][indexj][2] = 0
+            continue
           
           self.hsvImage[idxi][indexj][2] += extraV
